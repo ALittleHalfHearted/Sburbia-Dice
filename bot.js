@@ -7,9 +7,18 @@ client.on("ready", () => {
 });
 
 
-client.on("message", (message) => {
-	if (message.content.startsWith("ping")) {
-		message.channel.send("pong!");
+client.on('message', message => {
+	message.content = message.content.toLowerCase()
+	if (message.content.substring(0,1) === '%') {
+		var args = message.content.substring(1).split(' ');
+		var cmd = args[0];
+		args = args.splice(1).toString().replace(/,/g,' ');
+
+		switch(cmd) {
+			case 'ping':
+				message.reply('Pong!);
+			break;
+		}
 	}
 });
 
