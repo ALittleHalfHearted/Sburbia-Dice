@@ -77,7 +77,7 @@ function Dice(check,num,val,mod){
 }
 
 function BroadcastDrops(message,cmd,tier,num,results){
-	message.reply('```For killing ' + num + ' '  + 'T' + tier + cmd + ', you got:\n' + results + '```');
+	message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '```');
 }
 
 client.login(process.env.BOT_TOKEN);
