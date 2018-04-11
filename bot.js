@@ -66,7 +66,7 @@ client.on('message', message => {
 						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
 					default:
-						message.channel.send('```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+						message.channel.send('Use +commands [command] to get info on that specific command\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
 				}
 			break;
 			case 'r':
