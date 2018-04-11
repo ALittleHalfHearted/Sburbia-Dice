@@ -15,8 +15,8 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
-		var tier = 0;
-		var num = 0;
+		var tier = 1;
+		var num = 1;
 		var bg = 0;
 		var t1 = 0;
 		var t2 = 0;
@@ -51,16 +51,9 @@ client.on('message', message => {
 					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
 					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
 				}
-				else{
-					tier = 1;
-				}
 				if(args != ''){
 					num = args;
 				}
-				else{
-					num = 1;
-				}
-				console.log(tier + '\n' + num);
 				switch(tier){
 					case '1': case 1:
 						boon = Dice(boon,num,10,0);
@@ -68,10 +61,9 @@ client.on('message', message => {
 						t1 = Dice(t1,num,20,5);
 						t2 = Dice(t2,num,5,0);
 						results = 'Boon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
-						message.reply('```For killing ' + num + ' ' + cmd + ', you got:\n\n' + results + '```');
 					break;
 				}
-				//BroadcastDrops(message,cmd,num,results);
+				BroadcastDrops(message,cmd,num,results);
 			break;
 		}
 	}
@@ -81,7 +73,6 @@ function Dice(check,num,val,mod){
 	for(var i = 0;i < num;i++){
 		check = check + Math.floor(Math.random() * val) + 1;
 	}
-	console.log(check + mod);
 	return check + mod;
 }
 
