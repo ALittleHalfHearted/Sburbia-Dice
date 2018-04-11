@@ -57,10 +57,10 @@ client.on('message', message => {
 				}
 				switch(tier){
 					case '1':
-						boon = '\nboon: ' + Dice(boon,num,10);
+						boon = '\nboon: ' + Dice(boon,num,10,0);
 						bg = '\nbg: ' + Dice(bg,num * 2,20,10);
 						t1 = '\nt1: ' + Dice(t1,num,20,5);
-						t2 = '\nt2: ' + Dice(t2,num,5);
+						t2 = '\nt2: ' + Dice(t2,num,5,0);
 						results = boon + bg + t1 + t2;
 					break;
 				}
@@ -78,7 +78,7 @@ function Dice(check,num,val,mod){
 }
 
 function BroadcastDrops(message,cmd,num,results){
-	message.reply('```For killing ' + num + ' ' + cmd + ', you got:' + results);
+	message.reply('```For killing ' + num + ' ' + cmd + ', you got:' + results + '```');
 }
 
 client.login(process.env.BOT_TOKEN);
