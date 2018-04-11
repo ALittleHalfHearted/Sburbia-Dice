@@ -106,8 +106,8 @@ client.on('message', message => {
 						boon = Dice(boon,num,10,14,1);
 						bg = Dice(bg,num,20,24,2);
 						t7 = Dice(t7,num,20,5,1);
-						8 = Dice(8,num,5,0,1);
-						results = 'EXP: ' + (num * 11) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\n8: ' + 8;
+						t8 = Dice(t8,num,5,0,1);
+						results = 'EXP: ' + (num * 11) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\nt8: ' + t8;
 					break;
 				}
 				BroadcastDrops(message,'imps',tier,num,results);
