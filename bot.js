@@ -61,7 +61,7 @@ client.on('message', message => {
 						bg = Dice(bg,num * 2,20,10);
 						t1 = Dice(t1,num,20,5);
 						t2 = Dice(t2,num,5,0);
-						results = boon + '\n' + bg + '\n' + t1 + '\n' + t2;
+						results = 'Boon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
 					break;
 				}
 				BroadcastDrops(message,cmd,num,results);
