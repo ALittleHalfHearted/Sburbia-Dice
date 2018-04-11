@@ -48,7 +48,7 @@ client.on('message', message => {
 				message.reply('Ping!');
 			break;
 			case 'commands':
-				message.channel.send('```Enemy Drops:```\n`+imp`\n\n```Other Commands:```\n`+ping`\t`+pong`');
+				message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+rook`\n`+multi`~~\n\n```Other Commands:```\n`+ping`\t`+pong`');
 			break;
 			//+imp [#] t[#]
 			case 'imp': case 'imps':
@@ -61,39 +61,53 @@ client.on('message', message => {
 				}
 				switch(tier.toString()){
 					case '1':
-						boon = Dice(boon,num,10,0);
+						boon = Dice(boon,num,10,0,1);
 						bg = Dice(bg,num,20,10,2);
-						t1 = Dice(t1,num,20,5);
-						t2 = Dice(t2,num,5,0);
+						t1 = Dice(t1,num,20,5,1);
+						t2 = Dice(t2,num,5,0,1);
 						results = 'EXP: ' + (num * 5) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
 					break;
 					case '2':
-						boon = Dice(boon,num,10,2);
+						boon = Dice(boon,num,10,2,1);
 						bg = Dice(bg,num,20,12,2);
-						t2 = Dice(t2,num,20,5);
-						t3 = Dice(t3,num,5,0);
+						t2 = Dice(t2,num,20,5,1);
+						t3 = Dice(t3,num,5,0,1);
 						results = 'EXP: ' + (num * 6) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT2: ' + t2 + '\nT3: ' + t3;
 					break;
 					case '3':
-						boon = Dice(boon,num,10,4);
+						boon = Dice(boon,num,10,4,1);
 						bg = Dice(bg,num,20,14,2);
-						t3 = Dice(t3,num,20,5);
-						t4 = Dice(t4,num,5,0);
+						t3 = Dice(t3,num,20,5,1);
+						t4 = Dice(t4,num,5,0,1);
 						results = 'EXP: ' + (num * 7) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT3: ' + t3 + '\nT4: ' + t4;
 					break;
 					case '4':
-						boon = Dice(boon,num,10,6);
-						bg = Dice(bg,num,20,16,2);
-						t4 = Dice(t4,num,20,5);
-						t5 = Dice(t5,num,5,0);
+						boon = Dice(boon,num,10,8,1);
+						bg = Dice(bg,num,20,18,2);
+						t4 = Dice(t4,num,20,5,1);
+						t5 = Dice(t5,num,5,0,1);
 						results = 'EXP: ' + (num * 8) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT4: ' + t5;
 					break;
 					case '5':
-						boon = Dice(boon,num,10,6);
-						bg = Dice(bg,num,20,16,2);
-						t5 = Dice(t5,num,20,5);
-						t6 = Dice(t6,num,5,0);
+						boon = Dice(boon,num,10,10,1);
+						bg = Dice(bg,num,20,20,2);
+						t5 = Dice(t5,num,20,5,1);
+						t6 = Dice(t6,num,5,0,1);
 						results = 'EXP: ' + (num * 9) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT5: ' + t5 + '\nT6: ' + t6;
+					break;
+					case '6':
+						boon = Dice(boon,num,10,12,1);
+						bg = Dice(bg,num,20,22,2);
+						t6 = Dice(t6,num,20,5,1);
+						t7 = Dice(t7,num,5,0,1);
+						results = 'EXP: ' + (num * 10) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT6: ' + t6 + '\nT7: ' + t7;
+					break;
+					case '7':
+						boon = Dice(boon,num,10,14,1);
+						bg = Dice(bg,num,20,24,2);
+						t7 = Dice(t7,num,20,5,1);
+						8 = Dice(8,num,5,0,1);
+						results = 'EXP: ' + (num * 11) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\n8: ' + 8;
 					break;
 				}
 				BroadcastDrops(message,'imps',tier,num,results);
