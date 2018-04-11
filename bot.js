@@ -75,6 +75,7 @@ client.on('message', message => {
 				for(var i = 0;i < args.length;i++){
 					if(args[i].indexOf('d') != 0){
 						num = args[i].substring(0,args.indexOf('d'));
+						console.log(num);
 					}
 					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
 						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
