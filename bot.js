@@ -59,14 +59,14 @@ client.on('message', message => {
 			case 'commands':
 				switch(args){
 					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
-						message.channel.send('**```Use this command to get drops from any number of a single type of enemy.```**\n\n**Format:** `+[enemy name] [# killed]`\n\n**examples:**\n`+ogre 45` gets drops from 45 ' +
-							      'ogres\n`+rook 22` gets drops from 22 rooks.');
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
+							      'ogres\n`+liches 22` gets drops from 22 tier 1 liches.');
 					break;
 					case 'r':
 						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
 					default:
-						message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+						message.channel.send('```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
 				}
 			break;
 			case 'r':
@@ -287,7 +287,7 @@ client.on('message', message => {
 				}
 				BroadcastDrops(message,'basilisks',tier,num,results,valid);
 			break;
-			case 'lich': case 'giclops': case 'titachnid': case 'archeron':
+			case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
 				message.channel.send('Unfortunately the enemy type you have requested is still being defined by @God. Please check back later!');
 			break;
 		}
