@@ -39,6 +39,14 @@ client.on('message', message => {
 		var grist = 0;
 		var health = 0;
 		var results = '';
+		var math = '';
+		var roll = 0;
+		var resultsArray = [0,0,0,0,0,0];
+		var valid = true;
+		var val = 0;
+		var mod = 0
+		var rpt = 1;
+		
 		
 		switch(cmd){
 			case 'ping':
@@ -48,10 +56,27 @@ client.on('message', message => {
 				message.reply('Ping!');
 			break;
 			case 'commands':
-				message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+rook`\n`+multi`~~\n\n```Other Commands:```\n`+ping`\t`+pong`');
+				message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
 			break;
-			//+imp [#] t[#]
+			case 'r':
+				//+r [x]d[y]
+				args = args.split(' ');
+				for(var i = 0;i < args.length;i++){
+					if(args[i].indexOf('d') != 0){
+						num = args[i].substring(0,args.indexOf('d'));
+					}
+					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
+						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
+						mod = calculate(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/')));
+					}
+					else{
+						args[i].substring(args[i].indexOf('d') + 1);
+					}
+					resultsArray[i] = Dice(resultsArray[i],num,val,mod,rpt)
+				}
+			break;
 			case 'imp': case 'imps':
+				//+imp [#] t[#]
 				if(args.indexOf('t') != -1){
 					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
 					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
@@ -86,7 +111,7 @@ client.on('message', message => {
 						bg = Dice(bg,num,20,18,2);
 						t4 = Dice(t4,num,20,5,1);
 						t5 = Dice(t5,num,5,0,1);
-						results = 'EXP: ' + (num * 8) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT4: ' + t5;
+						results = 'EXP: ' + (num * 8) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT5: ' + t5;
 					break;
 					case '5':
 						boon = Dice(boon,num,10,10,1);
@@ -109,8 +134,10 @@ client.on('message', message => {
 						t8 = Dice(t8,num,5,0,1);
 						results = 'EXP: ' + (num * 11) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\nt8: ' + t8;
 					break;
+					default:
+						valid = false;
 				}
-				BroadcastDrops(message,'imps',tier,num,results);
+				BroadcastDrops(message,'imps',tier,num,results,valid);
 			break;
 		}
 	}
@@ -126,8 +153,33 @@ function Dice(check,num,val,mod,rpt){
 	return check;
 }
 
-function BroadcastDrops(message,cmd,tier,num,results){
-	message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '```');
+function modding(calculate){
+	if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
+		calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
+		if (calculate.replace(/[^%]/g, "").length > 0) {
+			for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
+				while ((calculate[calculate.indexOf("%", i+1) + 1] == "+" || calculate[calculate.indexOf("%", i+1) + 1] == "-" || calculate[calculate.indexOf("%", i+1) + 1] == "*" || calculate[calculate.indexOf("%", i+1) + 1] == "/" || calculate[calculate.indexOf("%", i+1) + 1] == "(" || calculate[calculate.indexOf("%", i+1) + 1] == ")" || calculate[calculate.indexOf("%", i+1) + 1] == "," || calculate.indexOf("%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
+					for (let j = calculate.indexOf("%", i+1); j > -1; j--) {
+						if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
+							calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, calculate.indexOf("%", i+1))/100) + calculate.substring(calculate.indexOf("%", i+1)+1, calculate.length);
+							break;
+						}
+					}
+				}
+			}
+		}
+		calculate = calculate.replace(/=/g, "");
+	}
+	return eval(calculate).toString();
+}
+
+function BroadcastDrops(message,cmd,tier,num,results,valid){
+	if(valid == true){
+		message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '```');
+	}
+	else{
+		message.reply('```I\'m sorry, the enemy tier you requested is either unavailable or does not exist.```');
+	}
 }
 
 client.login(process.env.BOT_TOKEN);
