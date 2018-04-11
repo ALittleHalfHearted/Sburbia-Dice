@@ -15,8 +15,8 @@ client.on('message', message => {
 		var cmd = args[0];
 		args = args.splice(1).toString().replace(/,/g,' ');
 		
-		var tier = 1;
-		var num = 1;
+		var tier = 0;
+		var num = 0;
 		var bg = 0;
 		var t1 = 0;
 		var t2 = 0;
