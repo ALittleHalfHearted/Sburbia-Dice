@@ -64,7 +64,7 @@ client.on('message', message => {
 						results = boon + bg + t1 + t2;
 					break;
 				}
-				BroadcastDrops(cmd,num,results);
+				BroadcastDrops(message,cmd,num,results);
 			break;
 		}
 	}
@@ -77,7 +77,7 @@ function Dice(check,num,val,mod){
 	return val + mod;
 }
 
-function BroadcastDrops(cmd,num,results){
+function BroadcastDrops(message,cmd,num,results){
 	message.reply('```For killing ' + num + ' ' + cmd + ', you got:' + results);
 }
 
