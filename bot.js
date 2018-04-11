@@ -55,9 +55,9 @@ client.on('message', message => {
 				if(args != ''){
 					num = args;
 				}
+				console.log(tier + '\n' + num);
 				switch(tier){
 					case '1':
-						console.log(tier + '\n' + num);
 						boon = Dice(boon,num,10,0);
 						bg = Dice(bg,num * 2,20,10);
 						t1 = Dice(t1,num,20,5);
@@ -76,8 +76,8 @@ function Dice(check,num,val,mod){
 	for(var i = 0;i < num;i++){
 		check = check + Math.floor(Math.random() * val) + 1;
 	}
-	return check + mod;
 	console.log(check + mod);
+	return check + mod;
 }
 
 function BroadcastDrops(message,cmd,num,results){
