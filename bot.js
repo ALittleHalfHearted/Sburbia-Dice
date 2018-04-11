@@ -72,8 +72,13 @@ client.on('message', message => {
 					else{
 						args[i].substring(args[i].indexOf('d') + 1);
 					}
-					resultsArray[i] = Dice(resultsArray[i],num,val,mod,rpt)
+					resultsArray[i] = Dice(resultsArray[i],num,val,mod,rpt);
+					if(resultsArray[i] - mod == 1){
+						resultsArray[i] = 'Default';
+					}
+					results = results + '\n`' + args[i] + '=' + resultsArray[i] + '`';
 				}
+				message.channel.send(message.author + 'Your dice resulted in: ' + results);
 			break;
 			case 'imp': case 'imps':
 				//+imp [#] t[#]
