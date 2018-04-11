@@ -57,7 +57,17 @@ client.on('message', message => {
 				message.reply('Ping!');
 			break;
 			case 'commands':
-				message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+				switch(args){
+					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy.```**\n\n**Format:** `+[enemy name] [# killed]`\n\n**examples:**\n`+ogre 45` gets drops from 45 ' +
+							      'ogres\n`+rook 22` gets drops from 22 rooks.');
+					break;
+					case 'r':
+						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
+					break;
+					default:
+						message.channel.send('```Enemy Drops:```\n`+imp`\n~~`+ogre`\n`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+				}
 			break;
 			case 'r':
 				//+r [x]d[y]
@@ -113,29 +123,29 @@ client.on('message', message => {
 						results = 'EXP: ' + (num * 7) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT3: ' + t3 + '\nT4: ' + t4;
 					break;
 					case '4':
-						boon = Dice(boon,num,10,8,1);
-						bg = Dice(bg,num,20,18,2);
+						boon = Dice(boon,num,10,6,1);
+						bg = Dice(bg,num,20,16,2);
 						t4 = Dice(t4,num,20,5,1);
 						t5 = Dice(t5,num,5,0,1);
 						results = 'EXP: ' + (num * 8) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT5: ' + t5;
 					break;
 					case '5':
-						boon = Dice(boon,num,10,10,1);
-						bg = Dice(bg,num,20,20,2);
+						boon = Dice(boon,num,10,8,1);
+						bg = Dice(bg,num,20,18,2);
 						t5 = Dice(t5,num,20,5,1);
 						t6 = Dice(t6,num,5,0,1);
 						results = 'EXP: ' + (num * 9) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT5: ' + t5 + '\nT6: ' + t6;
 					break;
 					case '6':
-						boon = Dice(boon,num,10,12,1);
-						bg = Dice(bg,num,20,22,2);
+						boon = Dice(boon,num,10,10,1);
+						bg = Dice(bg,num,20,20,2);
 						t6 = Dice(t6,num,20,5,1);
 						t7 = Dice(t7,num,5,0,1);
 						results = 'EXP: ' + (num * 10) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT6: ' + t6 + '\nT7: ' + t7;
 					break;
 					case '7':
-						boon = Dice(boon,num,10,14,1);
-						bg = Dice(bg,num,20,24,2);
+						boon = Dice(boon,num,10,12,1);
+						bg = Dice(bg,num,20,22,2);
 						t7 = Dice(t7,num,20,5,1);
 						t8 = Dice(t8,num,5,0,1);
 						results = 'EXP: ' + (num * 11) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\nt8: ' + t8;
@@ -144,6 +154,141 @@ client.on('message', message => {
 						valid = false;
 				}
 				BroadcastDrops(message,'imps',tier,num,results,valid);
+			break;
+			case 'ogre': case 'ogres':
+				//+ogre [#] t[#]
+				if(args.indexOf('t') != -1){
+					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
+					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
+				}
+				if(args != ''){
+					num = args;
+				}
+				switch(tier.toString()){
+						//check,num,val,mod,rpt
+					//15	d50	2d50+20	2d30+20	d10
+					case '1':
+						boon = Dice(boon,num,50,0,1);
+						bg = Dice(bg,num,50,20,2);
+						t1 = Dice(t1,num,30,20,2);
+						t2 = Dice(t2,num,10,0,1);
+						results = 'EXP: ' + (num * 15) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+					break;
+					case '2':
+						boon = Dice(boon,num,50,4,1);
+						bg = Dice(bg,num,50,22,2);
+						t2 = Dice(t2,num,30,20,2);
+						t3 = Dice(t3,num,10,0,1);
+						results = 'EXP: ' + (num * 17) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT2: ' + t2 + '\nT3: ' + t3;
+					break;
+					case '3':
+						boon = Dice(boon,num,50,6,1);
+						bg = Dice(bg,num,50,24,2);
+						t3 = Dice(t3,num,30,20,2);
+						t4 = Dice(t4,num,10,0,1);
+						results = 'EXP: ' + (num * 18) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT3: ' + t3 + '\nT4: ' + t4;
+					break;
+					case '4':
+						boon = Dice(boon,num,50,8,1);
+						bg = Dice(bg,num,50,26,2);
+						t4 = Dice(t4,num,30,20,2);
+						t5 = Dice(t5,num,10,0,1);
+						results = 'EXP: ' + (num * 19) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT5: ' + t5;
+					break;
+					case '5':
+						boon = Dice(boon,num,50,10,1);
+						bg = Dice(bg,num,50,28,2);
+						t5 = Dice(t5,num,30,20,2);
+						t6 = Dice(t6,num,10,0,1);
+						results = 'EXP: ' + (num * 20) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT5: ' + t5 + '\nT6: ' + t6;
+					break;
+					case '6':
+						boon = Dice(boon,num,50,12,1);
+						bg = Dice(bg,num,50,30,2);
+						t6 = Dice(t6,num,30,20,2);
+						t7 = Dice(t7,num,10,0,1);
+						results = 'EXP: ' + (num * 21) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT6: ' + t6 + '\nT7: ' + t7;
+					break;
+					case '7':
+						boon = Dice(boon,num,50,14,1);
+						bg = Dice(bg,num,50,32,2);
+						t7 = Dice(t7,num,30,20,2);
+						t8 = Dice(t8,num,10,0,1);
+						results = 'EXP: ' + (num * 22) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\nt8: ' + t8;
+					break;
+					default:
+						valid = false;
+				}
+				BroadcastDrops(message,'ogres',tier,num,results,valid);
+			break;
+			case 'basilisk': case 'basilisks':
+				//+basilisk [#] t[#]
+				if(args.indexOf('t') != -1){
+					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
+					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
+				}
+				if(args != ''){
+					num = args;
+				}
+				switch(tier.toString()){
+						//check,num,val,mod,rpt
+					//30	d100	2d100+40	2d50+40	d20
+					case '1':
+						boon = Dice(boon,num,100,0,1);
+						bg = Dice(bg,num,100,40,2);
+						t1 = Dice(t1,num,50,40,2);
+						t2 = Dice(t2,num,20,0,1);
+						results = 'EXP: ' + (num * 30) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+					break;
+					case '2':
+						boon = Dice(boon,num,100,6,1);
+						bg = Dice(bg,num,100,44,2);
+						t2 = Dice(t2,num,50,40,2);
+						t3 = Dice(t3,num,20,0,1);
+						results = 'EXP: ' + (num * 33) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT2: ' + t2 + '\nT3: ' + t3;
+					break;
+					case '3':
+						boon = Dice(boon,num,100,12,1);
+						bg = Dice(bg,num,100,48,2);
+						t3 = Dice(t3,num,50,40,2);
+						t4 = Dice(t4,num,20,0,1);
+						results = 'EXP: ' + (num * 36) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT3: ' + t3 + '\nT4: ' + t4;
+					break;
+					case '4':
+						boon = Dice(boon,num,100,18,1);
+						bg = Dice(bg,num,100,52,2);
+						t4 = Dice(t4,num,50,40,2);
+						t5 = Dice(t5,num,20,0,1);
+						results = 'EXP: ' + (num * 39) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT5: ' + t5;
+					break;
+					case '5':
+						boon = Dice(boon,num,100,24,1);
+						bg = Dice(bg,num,100,56,2);
+						t5 = Dice(t5,num,50,40,2);
+						t6 = Dice(t6,num,20,0,1);
+						results = 'EXP: ' + (num * 42) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT5: ' + t5 + '\nT6: ' + t6;
+					break;
+					case '6':
+						boon = Dice(boon,num,100,30,1);
+						bg = Dice(bg,num,100,60,2);
+						t6 = Dice(t6,num,50,40,2);
+						t7 = Dice(t7,num,20,0,1);
+						results = 'EXP: ' + (num * 45) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT6: ' + t6 + '\nT7: ' + t7;
+					break;
+					case '7':
+						boon = Dice(boon,num,100,36,1);
+						bg = Dice(bg,num,100,64,2);
+						t7 = Dice(t7,num,50,40,2);
+						t8 = Dice(t8,num,20,0,1);
+						results = 'EXP: ' + (num * 48) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT7: ' + t7 + '\nt8: ' + t8;
+					break;
+					default:
+						valid = false;
+				}
+				BroadcastDrops(message,'basilisks',tier,num,results,valid);
+			break;
+			case 'lich': case 'giclops': case 'titachnid': case 'archeron':
+				message.channel.send('Unfortunately the enemy type you have requested is still being defined by @God. Please check back later!');
 			break;
 		}
 	}
