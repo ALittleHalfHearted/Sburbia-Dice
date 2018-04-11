@@ -63,7 +63,7 @@ client.on('message', message => {
 						results = 'Boon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
 					break;
 				}
-				BroadcastDrops(message,cmd,num,results);
+				BroadcastDrops(message,'imps',tier,num,results);
 			break;
 		}
 	}
@@ -76,8 +76,8 @@ function Dice(check,num,val,mod){
 	return check + mod;
 }
 
-function BroadcastDrops(message,cmd,num,results){
-	message.reply('```For killing ' + num + ' ' + cmd + ', you got:\n' + results + '```');
+function BroadcastDrops(message,cmd,tier,num,results){
+	message.reply('```For killing ' + num + ' '  + 'T' + tier + cmd + ', you got:\n' + results + '```');
 }
 
 client.login(process.env.BOT_TOKEN);
