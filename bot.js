@@ -81,7 +81,7 @@ client.on('message', message => {
 						mod = Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/')));
 					}
 					else{
-						args[i].substring(args[i].indexOf('d') + 1);
+						val = args[i].substring(args[i].indexOf('d') + 1);
 					}
 					resultsArray[i] = Dice(resultsArray[i],num,val,mod,rpt);
 					if(resultsArray[i] - mod == 1){
@@ -89,7 +89,7 @@ client.on('message', message => {
 					}
 					results = results + '\n`' + args[i] + '=' + resultsArray[i] + '`';
 				}
-				message.channel.send(message.author + 'Your dice resulted in: ' + results);
+				message.reply('Your dice resulted in: ' + results);
 			break;
 			case 'imp': case 'imps':
 				//+imp [#] t[#]
