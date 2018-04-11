@@ -6,7 +6,7 @@ const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear()
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at ' + activated);
-	client.user.setGame('+commands for help');
+	client.user.setActivity('+commands for help');
 });
 
 client.on('message', message => {
