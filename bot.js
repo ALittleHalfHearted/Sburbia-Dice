@@ -44,9 +44,14 @@ client.on('message', message => {
 			case 'ping':
 				message.reply('Pong!');
 			break;
+			case 'pong':
+				message.reply('Ping!');
+			break;
+			case 'commands':
+				message.channel.send('```Enemy Drops:```\n`+imp`\n\n```Other Commands:```\n`+ping`\t`+pong`');
+			break;
 			//+imp [#] t[#]
 			case 'imp': case 'imps':
-				//5 exp, d10 boon, 2d20+10 bg, d20+5 t1, d5 t2
 				if(args.indexOf('t') != -1){
 					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
 					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
@@ -54,13 +59,41 @@ client.on('message', message => {
 				if(args != ''){
 					num = args;
 				}
-				switch(tier){
-					case '1': case 1:
+				switch(tier.toString()){
+					case '1':
 						boon = Dice(boon,num,10,0);
-						bg = Dice(bg,num * 2,20,10);
+						bg = Dice(bg,num,20,10,2);
 						t1 = Dice(t1,num,20,5);
 						t2 = Dice(t2,num,5,0);
-						results = 'Boon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+						results = 'EXP: ' + (num * 5) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+					break;
+					case '2':
+						boon = Dice(boon,num,10,2);
+						bg = Dice(bg,num,20,12,2);
+						t2 = Dice(t2,num,20,5);
+						t3 = Dice(t3,num,5,0);
+						results = 'EXP: ' + (num * 6) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT2: ' + t2 + '\nT3: ' + t3;
+					break;
+					case '3':
+						boon = Dice(boon,num,10,4);
+						bg = Dice(bg,num,20,14,2);
+						t3 = Dice(t3,num,20,5);
+						t4 = Dice(t4,num,5,0);
+						results = 'EXP: ' + (num * 7) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT3: ' + t3 + '\nT4: ' + t4;
+					break;
+					case '4':
+						boon = Dice(boon,num,10,6);
+						bg = Dice(bg,num,20,16,2);
+						t4 = Dice(t4,num,20,5);
+						t5 = Dice(t5,num,5,0);
+						results = 'EXP: ' + (num * 8) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT4: ' + t4 + '\nT4: ' + t5;
+					break;
+					case '5':
+						boon = Dice(boon,num,10,6);
+						bg = Dice(bg,num,20,16,2);
+						t5 = Dice(t5,num,20,5);
+						t6 = Dice(t6,num,5,0);
+						results = 'EXP: ' + (num * 9) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT5: ' + t5 + '\nT6: ' + t6;
 					break;
 				}
 				BroadcastDrops(message,'imps',tier,num,results);
@@ -69,11 +102,14 @@ client.on('message', message => {
 	}
 });
 
-function Dice(check,num,val,mod){
-	for(var i = 0;i < num;i++){
-		check = check + Math.floor(Math.random() * val) + 1;
+function Dice(check,num,val,mod,rpt){
+	for(var x = 0;x < rpt;x++){
+		for(var i = 0;i < num;i++){
+			check = check + Math.floor(Math.random() * val) + 1;
+		}
+		check = check + mod;
 	}
-	return check + mod;
+	return check;
 }
 
 function BroadcastDrops(message,cmd,tier,num,results){
