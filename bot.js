@@ -49,11 +49,16 @@ client.on('message', message => {
 				//5 exp, d10 boon, 2d20+10 bg, d20+5 t1, d5 t2
 				if(args.indexOf('t') != -1){
 					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
-					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'');
+					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
 				}
-				args = args.replace(/ /g,'');
+				else{
+					tier = 1;
+				}
 				if(args != ''){
 					num = args;
+				}
+				else{
+					num = 1;
 				}
 				console.log(tier + '\n' + num);
 				switch(tier){
