@@ -62,9 +62,10 @@ client.on('message', message => {
 						t1 = Dice(t1,num,20,5);
 						t2 = Dice(t2,num,5,0);
 						results = 'Boon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+						message.reply('```For killing ' + num + ' ' + cmd + ', you got:\n\n' + results + '```');
 					break;
 				}
-				BroadcastDrops(message,cmd,num,results);
+				//BroadcastDrops(message,cmd,num,results);
 			break;
 		}
 	}
