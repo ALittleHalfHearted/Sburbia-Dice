@@ -62,7 +62,7 @@ client.on('message', message => {
 				}
 				console.log(tier + '\n' + num);
 				switch(tier){
-					case '1':
+					case '1': case 1:
 						boon = Dice(boon,num,10,0);
 						bg = Dice(bg,num * 2,20,10);
 						t1 = Dice(t1,num,20,5);
