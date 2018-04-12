@@ -45,9 +45,7 @@ client.on('message', message => {
 		var resultsArray = [0,0,0,0,0,0,0,0,0,0];
 		var valid = true;
 		var val = 0;
-		var mod = 0
-		var rpt = 1;
-		
+		var mod = 0		
 		
 		switch(cmd){
 			case 'ping':
@@ -84,11 +82,14 @@ client.on('message', message => {
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
 					}
-					resultsArray[i] = Dice(resultsArray[i],num,val,mod,rpt);
-					if(resultsArray[i] - mod == 1){
-						resultsArray[i] = 'Default';
+					results = results + ((results != '') ? '\n':'') + '**`' + args[i] + ' =`**';
+					for(var x = 0;x < num;x++){
+						var pHold = Dice(resultsArray[i],1,val,mod,1);
+						if(pHold - mod == 1){
+							pHold = Default
+						}
+						results = results + '\n' + pHold;
 					}
-					results = results + '\n`' + args[i] + '=' + resultsArray[i] + '`';
 				}
 				message.reply('Your dice resulted in: ' + results);
 			break;
