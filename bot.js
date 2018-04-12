@@ -328,7 +328,19 @@ function Modding(calculate){
 
 function BroadcastDrops(message,cmd,tier,num,results,valid){
 	if(valid == true){
-		message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '```');
+		var a = Dice(0,1,100,0,1);
+		if(a == 100){
+			message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '\n\nIt even dropped a card! I wonder what Specibus/Modus you got?```');
+		}
+		else if(a >= 96){
+			message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '\n\nIt even dropped a weapon! I wonder what it could be?```');
+		}
+		else if(a >= 80){
+			message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '\n\nIt even dropped an item! I wonder what it does?```');
+		}
+		else{
+			message.reply('```For killing ' + num + ' '  + 'T' + tier + ' ' + cmd + ', you got:\n\n' + results + '```');
+		}
 	}
 	else{
 		message.reply('```I\'m sorry, the enemy tier you requested is either unavailable or does not exist.```');
