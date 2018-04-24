@@ -5,7 +5,7 @@ var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 2
 var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
 var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
-const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
+const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 
 const LETUNI = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
@@ -19,7 +19,7 @@ const EMBED = new Discord.RichEmbed()
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online at\n-----' + d.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC.toString().replace('+','±'));
+	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
 	client.user.setActivity('%drops for help');
 });
 
@@ -28,7 +28,7 @@ client.on('message', message => {
 	if (message.content.substring(0,1) === '+' && message.author.bot == false) {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
-		args = args.splice(1).toString().replace(/,/g,' ');
+		args = args.splice(0,1).toString().replace(/,/g,' ');
 		
 		var tier = 1;
 		var num = 1;
@@ -85,7 +85,7 @@ client.on('message', message => {
 				}
 			break;
 			case 'embed':
-				message.channel.send(EMBED);
+				message.channel.send({EMBED});
 			break;
 			case 'stupid': case 'pointless':
 				var mlem = ['',''];
