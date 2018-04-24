@@ -31,8 +31,15 @@ client.on("guildCreate", (guild) => {
 		permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
-	let member = client.member;
-	member.addRole(guild.roles.find("name", "RoseBot")).catch(console.error);
+	var found = false;
+	var memers = guild.members.array();
+	for(var i = 0;i < memers.length && found == false ;i++){
+		if(memers[i].indexOf(client.user) != -1){
+			var member = memers[i];
+			found = true;
+		}
+	}
+	member.addRole(guild.roles.find("RoseBot")).catch(console.error);
 });
 
 client.on('message', message => {
