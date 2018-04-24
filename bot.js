@@ -34,8 +34,9 @@ client.on("guildCreate", (guild) => {
 	var found = false;
 	var memers = guild.members.array();
 	for(var i = 0;i < memers.length && found == false ;i++){
-		if(memers[i].indexOf(client.user) != -1){
-			var member = memers[i];
+		let memei = memers[i].toString();
+		if(memei.indexOf(client.user) != -1){
+			var member = memei;
 			found = true;
 		}
 	}
