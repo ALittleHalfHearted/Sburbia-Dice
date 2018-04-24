@@ -1,12 +1,24 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var d = new Date();
-const activated = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+const UTC = new Date();
+var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 23);
+var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
+var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
+var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
+const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
+const embed = new Discord.RichEmbed()
+	.setTitle("__Commands List__")
+	.setDescription("use `%drops [command]` to get info on a specific command")
+	.setColor(65299)
+	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
+	.addField("Enemy Drops", "`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~", true)
+	.addField("Other Commands", "`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`",true);
+
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	console.log('Online at ' + activated);
-	client.user.setActivity('+commands for help');
+	console.log('Online at\n-----' + d.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC.toString().replace('+','±'));
+	client.user.setActivity('%drops for help');
 });
 
 client.on('message', message => {
@@ -56,16 +68,40 @@ client.on('message', message => {
 			break;
 			case 'commands':
 				switch(args){
-					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
+					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'imps': case 'ogres' case 'basilisks': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
 						message.channel.send('**```Use this command to get drops from any number of a single type of enemy at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
 							      'ogres\n`+liches 22` gets drops from 22 tier 1 liches.');
 					break;
 					case 'r':
 						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
+					case 'stupid': case 'pointless':
+						message.channel.send('**```Randomly generates a random amount of random unicode symbols. Random!```**');
+					break;
 					default:
-						message.channel.send('Use +commands [command] to get info on that specific command\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+						message.channel.send('Use +commands [command] to get info on that specific command\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`');
 				}
+			break;
+			case 'stupid': case 'pointless':
+				var mlem = ['',''];
+				var blep = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0;i < blep;i++){
+					let meh = '';
+					var nah = Math.floor(Math.random() * 2) + 4;
+					for(var x = 0;x < nah;x++){
+						var letnum = Math.floor(Math.random() * 2);
+						if(letnum == 1){
+							let letter = Math.floor(Math.random() * 5);
+							meh = meh + UnicodeLetters[letter];
+						}
+						else{
+							meh = meh.toString() + Math.floor(Math.random() * 10);
+						}
+					}
+					console.log('\\u' + meh);
+					mlem[i] = String.fromCharCode(meh);
+				}
+				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
 			case 'r':
 				//+r [x]d[y]
