@@ -11,7 +11,7 @@ const LETUNI = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `+drops [command]` to get info on a specific command")
-	.setColor(11876058)
+	.setColor(11876058) //#B536DA
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~", true)
 	.addField("Other Commands", "`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`",true);
@@ -21,6 +21,16 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
 	client.user.setActivity('%drops for help');
+});
+
+client.on("guildCreate", (guild) => {
+	console.log(client.user.username + " was invited to and joined " + guild.name);
+	guild.createRole({
+		name: 'RoseBot',
+		color: '#B536DA',
+		permissions: 'ADMINISTRATOR',
+		editable: 'true',
+	})
 });
 
 client.on('message', message => {
