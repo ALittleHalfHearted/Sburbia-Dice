@@ -11,7 +11,7 @@ const LETUNI = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `+drops [command]` to get info on a specific command")
-	.setColor(#b536da)
+	.setColor(11876058)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~", true)
 	.addField("Other Commands", "`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`",true);
