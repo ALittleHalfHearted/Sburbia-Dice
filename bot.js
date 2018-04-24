@@ -6,6 +6,8 @@ var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():
 var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
 const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
+
+const LETUNI = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `+drops [command]` to get info on a specific command")
@@ -95,7 +97,7 @@ client.on('message', message => {
 						var letnum = Math.floor(Math.random() * 2);
 						if(letnum == 1){
 							let letter = Math.floor(Math.random() * 5);
-							meh = meh + UnicodeLetters[letter];
+							meh = meh + LETUNI[letter];
 						}
 						else{
 							meh = meh.toString() + Math.floor(Math.random() * 10);
