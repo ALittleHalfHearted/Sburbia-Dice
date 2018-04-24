@@ -8,7 +8,7 @@ var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear(
 const d = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
-	.setDescription("use `%drops [command]` to get info on a specific command")
+	.setDescription("use `+drops [command]` to get info on a specific command")
 	.setColor(65299)
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~", true)
@@ -68,8 +68,8 @@ client.on('message', message => {
 			break;
 			case 'commands':
 				switch(args){
-					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'imps': case 'ogres' case 'basilisks': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
-						message.channel.send('**```Use this command to get drops from any number of a single type of enemy at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
+					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'imps': case 'ogres': case 'basilisks': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy (cannot do liches or above yet (I\'m waiting, God.)) at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
 							      'ogres\n`+liches 22` gets drops from 22 tier 1 liches.');
 					break;
 					case 'r':
