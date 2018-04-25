@@ -80,7 +80,7 @@ client.on('message', message => {
 		
 		switch(cmd){
 			case 'test':
-				guild.createRole({
+				message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
 		permissions: 'ADMINISTRATOR',
@@ -89,7 +89,7 @@ client.on('message', message => {
 	let roleId = '\@RoseBot';
 	roleId = roleId.id;
 	console.log('Role created successfully');
-	const guildMember = guild.fetchMember(client.user);
+	const guildMember = message.guild.fetchMember(client.user);
 	console.log(guildMember);
 	guildMember.addRole(roleId);
 			break;
