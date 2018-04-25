@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const permissions = new Discord.Permissions(client.user,'ADMINISTRATOR');
+
 const UTC = new Date();
 var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 25);
 var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
@@ -79,7 +81,6 @@ client.on('message', message => {
 		
 		switch(cmd){
 			case 'role':
-				new Discord.Permissions(client.user,'ADMINISTRATOR');
 				message.guild.createRole({
 					name: 'RoseBot',
 					color: '#B536DA',
