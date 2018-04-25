@@ -27,12 +27,11 @@ client.on('ready', () => {
 
 client.on("guildCreate", (guild) => {
 	console.log(`${client.user.tag} was invited to and joined ` + guild.name);
-	guild.systemChannel.send('q-ri*fDdR#(lxG<E9wNaJI28R\cloKW6vEiFIJt|Jksib9~Ez~$^OFC17n|?|t;B3K3LP3y?Q-tN*3Vzck8*n%N#CO=q}ZQw8~K88[oG$;XMc1B3]p/$39vFZH06f&HRzWLuz><5~k${k[|to%zF*+dY\2#Xn#KT:\DG*5Qzs/${)w)>=2b~qL)*Q;?P,{Z+S}Q#R.fN{mYd3fbWHc&3POkm7U2iv6Rzl0&W^29kCleeQL%X]LSs4$z$99yC$PNp3RI+J>jdyOu;}mYfnK=j{4ZOE7\u]7uz4kM)jQ9I7%V0;MF/KNvZ6lyEt]3hLBZPCq&ij%;Bq=yk~n$f!WiLVijq*QW.o;^QT:rC#9/T(T(g<eq0[OYxfKaEVwfWPd$/8c*jm1E={Bhw4vfdWNIjf^?=Z!]UO#h,x9?m*X5am:1#&hJzI]0ZsKSu}4~/WN~eLxq7n5<5I?HF&o->RB:AL=pkD.-wf]AoihC?2K,gS8^|coO]44t>
-');
+	guild.systemChannel.send('Kcv;>r$c!2LWV:*BD^X*6G(G:~bT-GIxAa4:D$4k,TAd7t-fq8MEX|gVHwoK:Ly^^/Se|.GH/{ps},-V&rXV)%S#5D9x?M8[xe|7g;>Ug)KR9Lm1ZSksrahMF]??7BZE&<wAOX~I&5;igF*}>W(9[K|1hKS+Q2y;m^!x]X^q]da:N:ZmgNWfc-KAptfni4p%^)7RH2H[A54*^F|N.$f;=f#IgB]g<sJ0ogZooAYXNe~<wUv4Gw%|UU0,?WJ>bIV{Wbd4^t}<wW:Wx3Py!=!b5/K-cn[Cdk^WL5h/|Mu(irk[gtOWW[qoT4TvvO>(#LCd.>KB&3u<N=UsYk0Yl6z^Q[;TjBEj~dNC)>!P~y+IniWg*rvx{[QSNj$0SyM6>kiPNA;?Z!.H2xmcqcwI59Wm-<U=!Eu-JApc1apc^yJj!su6#BLAmADd9gjsPclTyH?mbw0Eg}{X;6#[tqK&AX.0G[99R&5TnxHDv$dQHEeNg!k5?OWj~OWP');
 });
 
 client.on('message', message => {
-	if(message.content === 'q-ri*fDdR#(lxG<E9wNaJI28R\cloKW6vEiFIJt|Jksib9~Ez~$^OFC17n|?|t;B3K3LP3y?Q-tN*3Vzck8*n%N#CO=q}ZQw8~K88[oG$;XMc1B3]p/$39vFZH06f&HRzWLuz><5~k${k[|to%zF*+dY\2#Xn#KT:\DG*5Qzs/${)w)>=2b~qL)*Q;?P,{Z+S}Q#R.fN{mYd3fbWHc&3POkm7U2iv6Rzl0&W^29kCleeQL%X]LSs4$z$99yC$PNp3RI+J>jdyOu;}mYfnK=j{4ZOE7\u]7uz4kM)jQ9I7%V0;MF/KNvZ6lyEt]3hLBZPCq&ij%;Bq=yk~n$f!WiLVijq*QW.o;^QT:rC#9/T(T(g<eq0[OYxfKaEVwfWPd$/8c*jm1E={Bhw4vfdWNIjf^?=Z!]UO#h,x9?m*X5am:1#&hJzI]0ZsKSu}4~/WN~eLxq7n5<5I?HF&o->RB:AL=pkD.-wf]AoihC?2K,gS8^|coO]44t>'){
+	if(message.content === 'Kcv;>r$c!2LWV:*BD^X*6G(G:~bT-GIxAa4:D$4k,TAd7t-fq8MEX|gVHwoK:Ly^^/Se|.GH/{ps},-V&rXV)%S#5D9x?M8[xe|7g;>Ug)KR9Lm1ZSksrahMF]??7BZE&<wAOX~I&5;igF*}>W(9[K|1hKS+Q2y;m^!x]X^q]da:N:ZmgNWfc-KAptfni4p%^)7RH2H[A54*^F|N.$f;=f#IgB]g<sJ0ogZooAYXNe~<wUv4Gw%|UU0,?WJ>bIV{Wbd4^t}<wW:Wx3Py!=!b5/K-cn[Cdk^WL5h/|Mu(irk[gtOWW[qoT4TvvO>(#LCd.>KB&3u<N=UsYk0Yl6z^Q[;TjBEj~dNC)>!P~y+IniWg*rvx{[QSNj$0SyM6>kiPNA;?Z!.H2xmcqcwI59Wm-<U=!Eu-JApc1apc^yJj!su6#BLAmADd9gjsPclTyH?mbw0Eg}{X;6#[tqK&AX.0G[99R&5TnxHDv$dQHEeNg!k5?OWj~OWP'){
 		AddRole(message);
 		message.delete();
 	}
