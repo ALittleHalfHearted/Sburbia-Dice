@@ -32,8 +32,8 @@ client.on("guildCreate", (guild) => {
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	let blah = client.me;
-	blah.addRole(guild.roles.find("RoseBot")).catch(console.error);
+	//let blah = client.me;
+	//blah.addRole(guild.roles.find("RoseBot")).catch(console.error);
 });
 
 client.on('message', message => {
