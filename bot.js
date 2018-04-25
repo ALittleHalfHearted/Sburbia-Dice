@@ -407,16 +407,14 @@ function AddRole(message){
 	message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
-		permissions: 'ADMINISTRATOR',
+		//permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	message.guild.fetchMember(client.user).edit({
-		permissions: 'ADMINISTRATOR',
-		roles: ['RoseBot']
-	})
-	//let myRole = message.guild.roles.find("name", "RoseBot");
-	//message.guild.fetchMember(client.user).addRole(myRole).catch(console.error);
+	let botUser = message.guild.fetchMember(client.user).addRole('RoseBot');
+	let botRole message.guild.roles.find("name", "RoseBot");
+	botUser.addRole(botRole).catch(console.error);
+	botRole.edit({permissions: 'ADMINISTRATOR'});
 }
 	
 client.login(process.env.BOT_TOKEN);
