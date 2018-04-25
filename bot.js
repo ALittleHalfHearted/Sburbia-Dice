@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const UTC = new Date();
-var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 25);
+var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 24);
 var month = (UTC.getHours() - 5 > -1 && UTC.getDate() - 1 > 0) ? UTC.getMonth():((UTC.getMonth() - 1 > -1) ? (UTC.getMonth() - 1):11);
 var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? (UTC.getDate() - 1):(((month) == (0|2|4|6|7|9|11)) ? 31:(((month) == (3|5|8|10)) ? 30:(((year/4).isInteger == false) ? 28:29))));
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
@@ -343,7 +343,28 @@ client.on('message', message => {
 				}
 				BroadcastDrops(message,'basilisks',tier,num,results,valid);
 			break;
-			case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
+			case 'lich': case 'liches': 
+				if(args.indexOf('t') != -1){
+					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
+					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
+				}
+				if(args != ''){
+					num = args;
+				}
+				switch(tier.toString()){
+					case '1': //check num val mod rpt
+						boon = Dice(boon,num,100,0,2);
+						bg = Dice(bg,num,200,0,2);
+						t1 = Dice(t1,num,/*val,mod,rpt*/);
+						t2 = Dice(t2,num,40,0,1);
+						results = 'EXP: ' + (num * 50) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
+					break;
+					default:
+						valid = false;
+				}
+				BroadcastDrops(message,'liches',tier,num,results,valid);
+			break;
+			case 'giclops': case 'titachnid': case 'archeron': case 'giclopes': case 'titachnids': case 'archerons':
 				message.channel.send('Unfortunately the enemy type you have requested is still being defined by @God. Please check back later!');
 			break;
 		}
