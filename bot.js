@@ -24,14 +24,16 @@ client.on('ready', () => {
 });
 
 client.on("guildCreate", (guild) => {
-	console.log(client.user.username + " was invited to and joined " + guild.name);
+	console.log(`${client.user.tag} was invited to and joined ` + guild.name);
 	guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
 		permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
-	client.user.id.addRole(guild.roles.find("RoseBot")).catch(console.error);
+	console.log('Role created successfully');
+	let blah = client.me;
+	blah.addRole(guild.roles.find("RoseBot")).catch(console.error);
 });
 
 client.on('message', message => {
