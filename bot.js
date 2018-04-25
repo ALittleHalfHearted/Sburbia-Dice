@@ -87,7 +87,8 @@ client.on('message', message => {
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	message.member.addRole('RoseBot');
+		let role = message.guild.roles.find("name", "RoseBot");
+	message.member.addRole(role);
 			break;
 			case 'ping':
 				message.reply('Pong!');
