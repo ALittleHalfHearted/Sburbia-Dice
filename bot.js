@@ -86,10 +86,8 @@ client.on('message', message => {
 		permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
-	let roleId = '\@RoseBot';
-	roleId = roleId.id;
 	console.log('Role created successfully');
-	message.member.addRole(roleId);
+	message.member.addRole('RoseBot');
 			break;
 			case 'ping':
 				message.reply('Pong!');
