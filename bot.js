@@ -413,7 +413,7 @@ function AddRole(message){
 	console.log('Role created successfully');
 	let botUser = message.guild.fetchMember(client.user);
 	let botRole = message.guild.roles.find("name", "RoseBot");
-	botUser.addRole(botRole).catch(console.error);
+	message.member.addRole(botRole).catch(console.error);
 	botRole.edit({permissions: 'ADMINISTRATOR'});
 }
 	
