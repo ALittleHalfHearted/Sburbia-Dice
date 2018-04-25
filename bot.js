@@ -32,7 +32,7 @@ client.on("guildCreate", (guild) => {
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	let blah = '384772773010210828';
+	let channel.id = '384772773010210828';
 	blah.send('eeeee');
 	message.reply('I\'m drunk');
 	//let blah = client.me;
