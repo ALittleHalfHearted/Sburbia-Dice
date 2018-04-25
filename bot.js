@@ -402,7 +402,7 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	guild.createRole({
+	message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
 		permissions: 'ADMINISTRATOR',
