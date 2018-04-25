@@ -79,7 +79,7 @@ client.on('message', message => {
 		var mod = 0		
 		
 		switch(cmd){
-			case 'test':
+			case 'role':
 				message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
@@ -89,7 +89,7 @@ client.on('message', message => {
 	let roleId = '\@RoseBot';
 	roleId = roleId.id;
 	console.log('Role created successfully');
-	const guildMember = message.guild.fetchMember(client.user).addRole(roleId);
+	message.member.addRole(roleId);
 			break;
 			case 'ping':
 				message.reply('Pong!');
