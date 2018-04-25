@@ -404,16 +404,19 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 function AddRole(message){
 	let perms = message.guild.fetchMember(client.user).permissions;
 	console.log('Permissions: ' + perms);
-	//new Discord.Permissions(message.guild.fetchMember(client.user),ALL).catch(console.error);
 	message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
 		permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
-	let myRole = message.guild.roles.find("name", "RoseBot");
 	console.log('Role created successfully');
-	message.guild.fetchMember(client.user).addRole(myRole).catch(console.error);
+	message.guild.fetchMember(client.user).edit({
+		permissions: 'ADMINISTRATOR',
+		roles: ['RoseBot']
+	})
+	//let myRole = message.guild.roles.find("name", "RoseBot");
+	//message.guild.fetchMember(client.user).addRole(myRole).catch(console.error);
 }
 	
 client.login(process.env.BOT_TOKEN);
