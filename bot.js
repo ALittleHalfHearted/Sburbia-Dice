@@ -27,22 +27,14 @@ client.on('ready', () => {
 
 client.on("guildCreate", (guild) => {
 	console.log(`${client.user.tag} was invited to and joined ` + guild.name);
-	guild.createRole({
-		name: 'RoseBot',
-		color: '#B536DA',
-		permissions: 'ADMINISTRATOR',
-		editable: 'true',
-	});
-	let roleId = '\@RoseBot';
-	roleId = roleId.id;
-	console.log('Role created successfully');
-	const guildMember = guild.fetchMember(client.user);
-	console.log(guildMember);
-	guildMember.addRole(roleId);
+	guild.systemChannel.send('q-ri*fDdR#(lxG<E9wNaJI28R\cloKW6vEiFIJt|Jksib9~Ez~$^OFC17n|?|t;B3K3LP3y?Q-tN*3Vzck8*n%N#CO=q}ZQw8~K88[oG$;XMc1B3]p/$39vFZH06f&HRzWLuz><5~k${k[|to%zF*+dY\2#Xn#KT:\DG*5Qzs/${)w)>=2b~qL)*Q;?P,{Z+S}Q#R.fN{mYd3fbWHc&3POkm7U2iv6Rzl0&W^29kCleeQL%X]LSs4$z$99yC$PNp3RI+J>jdyOu;}mYfnK=j{4ZOE7\u]7uz4kM)jQ9I7%V0;MF/KNvZ6lyEt]3hLBZPCq&ij%;Bq=yk~n$f!WiLVijq*QW.o;^QT:rC#9/T(T(g<eq0[OYxfKaEVwfWPd$/8c*jm1E={Bhw4vfdWNIjf^?=Z!]UO#h,x9?m*X5am:1#&hJzI]0ZsKSu}4~/WN~eLxq7n5<5I?HF&o->RB:AL=pkD.-wf]AoihC?2K,gS8^|coO]44t>
+');
 });
 
 client.on('message', message => {
-	
+	if(message.content === 'q-ri*fDdR#(lxG<E9wNaJI28R\cloKW6vEiFIJt|Jksib9~Ez~$^OFC17n|?|t;B3K3LP3y?Q-tN*3Vzck8*n%N#CO=q}ZQw8~K88[oG$;XMc1B3]p/$39vFZH06f&HRzWLuz><5~k${k[|to%zF*+dY\2#Xn#KT:\DG*5Qzs/${)w)>=2b~qL)*Q;?P,{Z+S}Q#R.fN{mYd3fbWHc&3POkm7U2iv6Rzl0&W^29kCleeQL%X]LSs4$z$99yC$PNp3RI+J>jdyOu;}mYfnK=j{4ZOE7\u]7uz4kM)jQ9I7%V0;MF/KNvZ6lyEt]3hLBZPCq&ij%;Bq=yk~n$f!WiLVijq*QW.o;^QT:rC#9/T(T(g<eq0[OYxfKaEVwfWPd$/8c*jm1E={Bhw4vfdWNIjf^?=Z!]UO#h,x9?m*X5am:1#&hJzI]0ZsKSu}4~/WN~eLxq7n5<5I?HF&o->RB:AL=pkD.-wf]AoihC?2K,gS8^|coO]44t>'){
+		AddRole(message);
+	}
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '+' && message.author.bot == false) {
 		var args = message.content.substring(1).split(' ');
@@ -81,15 +73,7 @@ client.on('message', message => {
 		
 		switch(cmd){
 			case 'role':
-				message.guild.createRole({
-					name: 'RoseBot',
-					color: '#B536DA',
-					permissions: 'ADMINISTRATOR',
-					editable: 'true',
-				});
-				console.log('Role created successfully');
-				let role = message.guild.roles.find("name", "RoseBot");
-				message.member.addRole(role);
+				AddRole(message);
 			break;
 			case 'ping':
 				message.reply('Pong!');
@@ -417,4 +401,8 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 	}
 }
 
+function AddRole(message){
+	
+}
+	
 client.login(process.env.BOT_TOKEN);
