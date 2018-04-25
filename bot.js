@@ -33,7 +33,7 @@ client.on("guildCreate", (guild) => {
 	});
 	console.log('Role created successfully');
 	let channel.id = '384772773010210828';
-	blah.send('eeeee');
+	channel.send('eeeee');
 	message.reply('I\'m drunk');
 	//let blah = client.me;
 	//blah.addRole(guild.roles.find("RoseBot")).catch(console.error);
