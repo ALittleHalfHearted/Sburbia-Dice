@@ -22,7 +22,6 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
 	client.user.setActivity('%drops for help');
-	console.log(client.user.permissions);
 });
 
 client.on("guildCreate", (guild) => {
@@ -403,7 +402,9 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	new Discord.Permissions(message.guild.fetchMember(client.user),ALL).catch(console.error);
+	let perms = message.channel.permissionsFor(message.member);
+	console.log(perms);
+	//new Discord.Permissions(message.guild.fetchMember(client.user),ALL).catch(console.error);
 	message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
