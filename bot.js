@@ -89,9 +89,7 @@ client.on('message', message => {
 	let roleId = '\@RoseBot';
 	roleId = roleId.id;
 	console.log('Role created successfully');
-	const guildMember = message.guild.fetchMember(client.user);
-	console.log(guildMember);
-	guildMember.addRole(roleId);
+	const guildMember = message.guild.fetchMember(client.user).addRole(roleId);
 			break;
 			case 'ping':
 				message.reply('Pong!');
