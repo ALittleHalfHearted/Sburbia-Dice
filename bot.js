@@ -31,15 +31,7 @@ client.on("guildCreate", (guild) => {
 		permissions: 'ADMINISTRATOR',
 		editable: 'true',
 	});
-	var found = false;
-	var memers = guild.members.array();
-	for(var i = 0;i < memers.length && found == false ;i++){
-		let memei = memers[i];
-		if(memei.toString().indexOf(client.user.id.toString()) != -1){
-			var member = memei;
-			found = true;
-		}
-	}
+	let member = message.member;
 	member.addRole(guild.roles.find("RoseBot")).catch(console.error);
 });
 
