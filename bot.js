@@ -402,7 +402,11 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	let perms = message.guild.fetchMember(client.user).permissions;
+	let botUser = message.guild.fetchMember(client.user);
+	let perms = botUser.permissions;
+	console.log('Permissions: ' + perms);
+	botUser.permissions.add('ADMINISTRATOR','MANAGE_ROLES');
+	perms = botUser.permissions;
 	console.log('Permissions: ' + perms);
 	message.guild.createRole({
 		name: 'RoseBot',
@@ -411,7 +415,6 @@ function AddRole(message){
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	let botUser = message.guild.fetchMember(client.user);
 	let botRole = message.guild.roles.find("name", "RoseBot");
 	message.member.addRole(botRole).catch(console.error);
 	botRole.edit({permissions: 'ADMINISTRATOR'});
