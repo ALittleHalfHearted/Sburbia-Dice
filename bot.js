@@ -402,7 +402,7 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	let perms = message.channel.permissionsFor(message.member);
+	let perms = message.channel.permissionsFor(message.guild.fetchMember(client.user));
 	console.log(perms);
 	//new Discord.Permissions(message.guild.fetchMember(client.user),ALL).catch(console.error);
 	message.guild.createRole({
