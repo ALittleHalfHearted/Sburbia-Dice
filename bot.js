@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const permissions = new Discord.Permissions(client.user,'ADMINISTRATOR');
+const permissions = new Discord.Permissions(client.user,Discord.Permissions.ALL);
 
 const UTC = new Date();
 var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 25);
