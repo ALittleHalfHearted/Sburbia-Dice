@@ -23,6 +23,7 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
 	client.user.setActivity('%drops for help');
+	console.log(client.user.permissions);
 });
 
 client.on("guildCreate", (guild) => {
