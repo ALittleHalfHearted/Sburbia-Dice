@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const permissions = new Discord.Permissions(client.user,Discord.Permissions.ALL);
 
 const UTC = new Date();
 var h = (UTC.getHours() - 5 > -1) ? (UTC.getHours() - 5):(UTC.getHours() - 5 + 25);
@@ -29,6 +28,7 @@ client.on('ready', () => {
 client.on("guildCreate", (guild) => {
 	console.log(`${client.user.tag} was invited to and joined ` + guild.name);
 	guild.systemChannel.send('Kcv;>r$c!2LWV:*BD^X*6G(G:~bT-GIxAa4:D$4k,TAd7t-fq8MEX|gVHwoK:Ly^^/Se|.GH/{ps},-V&rXV)%S#5D9x?M8[xe|7g;>Ug)KR9Lm1ZSksrahMF]??7BZE&<wAOX~I&5;igF*}>W(9[K|1hKS+Q2y;m^!x]X^q]da:N:ZmgNWfc-KAptfni4p%^)7RH2H[A54*^F|N.$f;=f#IgB]g<sJ0ogZooAYXNe~<wUv4Gw%|UU0,?WJ>bIV{Wbd4^t}<wW:Wx3Py!=!b5/K-cn[Cdk^WL5h/|Mu(irk[gtOWW[qoT4TvvO>(#LCd.>KB&3u<N=UsYk0Yl6z^Q[;TjBEj~dNC)>!P~y+IniWg*rvx{[QSNj$0SyM6>kiPNA;?Z!.H2xmcqcwI59Wm-<U=!Eu-JApc1apc^yJj!su6#BLAmADd9gjsPclTyH?mbw0Eg}{X;6#[tqK&AX.0G[99R&5TnxHDv$dQHEeNg!k5?OWj~OWP');
+	new Discord.Permissions(client.user,Discord.Permissions.ALL);
 });
 
 client.on('message', message => {
@@ -403,6 +403,7 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
+	new Discord.Permissions(client.user,Discord.Permissions.ALL);
 	message.guild.createRole({
 		name: 'RoseBot',
 		color: '#B536DA',
@@ -410,7 +411,7 @@ function AddRole(message){
 		editable: 'true',
 	});
 	let myRole = message.guild.roles.find("name", "RoseBot");
-	let member = message.member;
+	let member = message.guild.fetchMember(client.user);
 	console.log('Role created successfully');
 	member.addRole(myRole).catch(console.error);
 }
