@@ -405,7 +405,7 @@ function AddRole(message){
 	let botUser = message.guild.fetchMember(client.user);
 	let perms = botUser.permissions;
 	console.log('Permissions: ' + perms);
-	botUser.permissions.add('ADMINISTRATOR','MANAGE_ROLES');
+	perms.add('ADMINISTRATOR','MANAGE_ROLES');
 	perms = botUser.permissions;
 	console.log('Permissions: ' + perms);
 	message.guild.createRole({
