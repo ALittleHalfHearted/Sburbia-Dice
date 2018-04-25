@@ -33,6 +33,7 @@ client.on("guildCreate", (guild) => {
 	});
 	console.log('Role created successfully');
 	const guildMember = guild.fetchMember(client.user);
+	console.log(guildMember);
 	guildMember.addRole('RoseBot');
 });
 
