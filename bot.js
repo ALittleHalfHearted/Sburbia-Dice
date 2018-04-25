@@ -32,11 +32,8 @@ client.on("guildCreate", (guild) => {
 		editable: 'true',
 	});
 	console.log('Role created successfully');
-	let channel = '384772773010210828';
-	channel.send('eeeee');
-	message.reply('I\'m drunk');
-	//let blah = client.me;
-	//blah.addRole(guild.roles.find("RoseBot")).catch(console.error);
+	const guildMember = guild.fetchMember(client.user);
+	guildMember.addRole('RoseBot');
 });
 
 client.on('message', message => {
