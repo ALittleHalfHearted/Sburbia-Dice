@@ -402,8 +402,8 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 }
 
 function AddRole(message){
-	let perms = message.channel.permissionsFor(message.guild.fetchMember(client.user));
-	console.log(perms);
+	let perms = message.guild.fetchMember(client.user).permissions;
+	console.log('Permissions: ' + perms);
 	//new Discord.Permissions(message.guild.fetchMember(client.user),ALL).catch(console.error);
 	message.guild.createRole({
 		name: 'RoseBot',
