@@ -343,28 +343,7 @@ client.on('message', message => {
 				}
 				BroadcastDrops(message,'basilisks',tier,num,results,valid);
 			break;
-			case 'lich': case 'liches': 
-				if(args.indexOf('t') != -1){
-					tier = args.substring(args.indexOf('t') + 1,args.indexOf('t') + 2);
-					args = args.replace(args.substring(args.indexOf('t'),args.indexOf('t') + 2),'').replace(/ /g,'');
-				}
-				if(args != ''){
-					num = args;
-				}
-				switch(tier.toString()){
-					case '1': //check num val mod rpt
-						boon = Dice(boon,num,100,0,2);
-						bg = Dice(bg,num,200,0,2);
-						t1 = Dice(t1,num,/*val,mod,rpt*/);
-						t2 = Dice(t2,num,40,0,1);
-						results = 'EXP: ' + (num * 50) + '\nBoon: ' + boon + '\nBG: ' + bg + '\nT1: ' + t1 + '\nT2: ' + t2;
-					break;
-					default:
-						valid = false;
-				}
-				BroadcastDrops(message,'liches',tier,num,results,valid);
-			break;
-			case 'giclops': case 'titachnid': case 'archeron': case 'giclopes': case 'titachnids': case 'archerons':
+			case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
 				message.channel.send('Unfortunately the enemy type you have requested is still being defined by @God. Please check back later!');
 			break;
 		}
