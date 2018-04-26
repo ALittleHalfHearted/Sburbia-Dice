@@ -24,22 +24,12 @@ client.on('ready', () => {
 	client.user.setActivity('%drops for help');
 });
 
-client.on("guildCreate", (guild) => {
-	console.log(`${client.user.tag} was invited to and joined ` + guild.name);
-//	guild.systemChannel.send('Kcv;>r$c!2LWV:*BD^X*6G(G:~bT-GIxAa4:D$4k,TAd7t-fq8MEX|gVHwoK:Ly^^/Se|.GH/{ps},-V&rXV)%S#5D9x?M8[xe|7g;>Ug)KR9Lm1ZSksrahMF]??7BZE&<wAOX~I&5;igF*}>W(9[K|1hKS+Q2y;m^!x]X^q]da:N:ZmgNWfc-KAptfni4p%^)7RH2H[A54*^F|N.$f;=f#IgB]g<sJ0ogZooAYXNe~<wUv4Gw%|UU0,?WJ>bIV{Wbd4^t}<wW:Wx3Py!=!b5/K-cn[Cdk^WL5h/|Mu(irk[gtOWW[qoT4TvvO>(#LCd.>KB&3u<N=UsYk0Yl6z^Q[;TjBEj~dNC)>!P~y+IniWg*rvx{[QSNj$0SyM6>kiPNA;?Z!.H2xmcqcwI59Wm-<U=!Eu-JApc1apc^yJj!su6#BLAmADd9gjsPclTyH?mbw0Eg}{X;6#[tqK&AX.0G[99R&5TnxHDv$dQHEeNg!k5?OWj~OWP');
-//	new Discord.Permissions(client.user,Discord.Permissions.ALL);
-});
-
 client.on('message', message => {
-	/*if(message.content === 'Kcv;>r$c!2LWV:*BD^X*6G(G:~bT-GIxAa4:D$4k,TAd7t-fq8MEX|gVHwoK:Ly^^/Se|.GH/{ps},-V&rXV)%S#5D9x?M8[xe|7g;>Ug)KR9Lm1ZSksrahMF]??7BZE&<wAOX~I&5;igF*}>W(9[K|1hKS+Q2y;m^!x]X^q]da:N:ZmgNWfc-KAptfni4p%^)7RH2H[A54*^F|N.$f;=f#IgB]g<sJ0ogZooAYXNe~<wUv4Gw%|UU0,?WJ>bIV{Wbd4^t}<wW:Wx3Py!=!b5/K-cn[Cdk^WL5h/|Mu(irk[gtOWW[qoT4TvvO>(#LCd.>KB&3u<N=UsYk0Yl6z^Q[;TjBEj~dNC)>!P~y+IniWg*rvx{[QSNj$0SyM6>kiPNA;?Z!.H2xmcqcwI59Wm-<U=!Eu-JApc1apc^yJj!su6#BLAmADd9gjsPclTyH?mbw0Eg}{X;6#[tqK&AX.0G[99R&5TnxHDv$dQHEeNg!k5?OWj~OWP'){
-		AddRole(message);
-		message.delete();
-	}*/
 	message.content = message.content.toLowerCase()
 	if (message.content.substring(0,1) === '+' && message.author.bot == false) {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0];
-		args = args.splice(0,1).toString().replace(/,/g,' ');
+		args = args.splice(1).toString().replace(/,/g,' ');
 		
 		var tier = 1;
 		var num = 1;
@@ -61,6 +51,7 @@ client.on('message', message => {
 		var giclopes = 0;
 		var titachnids = 0;
 		var archerons = 0;
+		var rooks = 0;
 		var grist = 0;
 		var health = 0;
 		var results = '';
@@ -72,9 +63,6 @@ client.on('message', message => {
 		var mod = 0		
 		
 		switch(cmd){
-			case 'role':
-				AddRole(message);
-			break;
 			case 'ping':
 				message.reply('Pong!');
 			break;
@@ -83,43 +71,16 @@ client.on('message', message => {
 			break;
 			case 'commands':
 				switch(args){
-					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'imps': case 'ogres': case 'basilisks': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
-						message.channel.send('**```Use this command to get drops from any number of a single type of enemy (cannot do liches or above yet (I\'m waiting, God.)) at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
+					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
+						message.channel.send('**```Use this command to get drops from any number of a single type of enemy at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
 							      'ogres\n`+liches 22` gets drops from 22 tier 1 liches.');
 					break;
 					case 'r':
 						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
-					case 'stupid': case 'pointless':
-						message.channel.send('**```Randomly generates a random amount of random unicode symbols. Random!```**');
-					break;
 					default:
-						message.channel.send('Use +commands [command] to get info on that specific command\n\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`');
+						message.channel.send('Use +commands [command] to get info on that specific command\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
 				}
-			break;
-			case 'embed':
-				message.channel.send(EMBED);
-			break;
-			case 'stupid': case 'pointless':
-				var mlem = ['',''];
-				var blep = Math.floor(Math.random() * 100) + 1;
-				for(var i = 0;i < blep;i++){
-					let meh = '';
-					var nah = Math.floor(Math.random() * 2) + 4;
-					for(var x = 0;x < nah;x++){
-						var letnum = Math.floor(Math.random() * 2);
-						if(letnum == 1){
-							let letter = Math.floor(Math.random() * 5);
-							meh = meh + LETUNI[letter];
-						}
-						else{
-							meh = meh.toString() + Math.floor(Math.random() * 10);
-						}
-					}
-					console.log('\\u' + meh);
-					mlem[i] = String.fromCharCode(meh);
-				}
-				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
 			case 'r':
 				//+r [x]d[y]
@@ -401,24 +362,4 @@ function BroadcastDrops(message,cmd,tier,num,results,valid){
 	}
 }
 
-/*function AddRole(message){
-	let botUser = message.guild.fetchMember(client.user);
-	let perms = botUser.permissions;
-	console.log('Permissions: ' + perms);
-	perms.add('ADMINISTRATOR','MANAGE_ROLES');
-	perms = botUser.permissions;
-	console.log('Permissions: ' + perms);
-	message.guild.createRole({
-		name: 'RoseBot',
-		color: '#B536DA',
-		//permissions: 'ADMINISTRATOR',
-		editable: 'true',
-	});
-	console.log('Role created successfully');
-	let botRole = message.guild.roles.find("name", "RoseBot");
-	message.member.addRole(botRole).catch(console.error);
-	botRole.edit({permissions: 'ADMINISTRATOR'});
-	return;
-}*/
-	
 client.login(process.env.BOT_TOKEN);
