@@ -109,7 +109,7 @@ client.on('message', message => {
 								resultsArray[x] = "Default";
 							}
 							else{
-								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + mod.toString() + ') = ' + resultsArray[x];
+								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + ' + ' + mod.toString() + ') = ' + resultsArray[x];
 							}
 						}
 						results = results + '\n' + resultsArray[x];
