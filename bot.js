@@ -101,7 +101,7 @@ client.on('message', message => {
 					for(var x = 0;x < num;x++){
 						var pHold = Dice(resultsArray[i],1,val,mod,1);
 						if(pHold - mod == 1){
-							pHold = Default
+							pHold = "Default";
 						}
 						results = results + '\n' + pHold;
 					}
