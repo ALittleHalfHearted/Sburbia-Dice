@@ -114,7 +114,7 @@ client.on('message', message => {
 						val = args[i].substring(args[i].indexOf('d') + 1);
 						mod = 0;
 					}
-					results = results + ((results != '') ? '\n':'') + '**`' + args[i] + ' =`**';
+					results = results + ((results != '') ? '\n\n':'') + '**`' + args[i] + ' =`**';
 					for(var x = 0;x < num;x++){
 						resultsArray[x] = Dice(0,1,val,mod,1);
 						if(mod != 0){
