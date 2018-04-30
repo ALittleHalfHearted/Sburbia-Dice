@@ -108,6 +108,7 @@ client.on('message', message => {
 						else if(args[i].indexOf('*') != -1){
 							operation = '*';
 						}
+						console.log(mod);
 					}
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
