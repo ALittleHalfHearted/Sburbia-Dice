@@ -102,7 +102,7 @@ client.on('message', message => {
 					}
 					results = results + ((results != '') ? '\n':'') + '**`' + args[i] + ' =`**';
 					for(var x = 0;x < num;x++){
-						resultsArray[x] = Dice(0,1,val,mod.valueOf(),1);
+						resultsArray[x] = Dice(0,1,val,parseInt(mod),1);
 						if(resultsArray[x] - mod == 1){
 							resultsArray[x] = "Default";
 						}
