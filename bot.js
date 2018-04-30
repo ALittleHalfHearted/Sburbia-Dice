@@ -77,7 +77,7 @@ client.on('message', message => {
 							      'ogres\n`+liches 22` gets drops from 22 tier 1 liches.');
 					break;
 					case 'r':
-						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
+						message.channel.send('**```A standard dice rolling command with addition capabilities. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
 					default:
 						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
@@ -93,22 +93,9 @@ client.on('message', message => {
 					else{
 						num = 0;
 					}
-					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
-						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
-						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/'))));
-						if(args[i].indexOf('+') != -1){
-							operation = '+';
-						}
-						else if(args[i].indexOf('-') != -1){
-							operation = '-';
-						}
-						else if(args[i].indexOf('/') != -1){
-							operation = '';
-						}
-						else if(args[i].indexOf('*') != -1){
-							operation = '*';
-						}
-						console.log(mod);
+					if(args[i].indexOf('+') != -1){
+						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+'));
+						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+'))));
 					}
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
@@ -122,7 +109,7 @@ client.on('message', message => {
 								resultsArray[x] = "Default";
 							}
 							else{
-								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + ' ' + operation + ' ' + mod.toString() + ') = ' + resultsArray[x];
+								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + ' + ' + mod.toString() + ') = ' + resultsArray[x];
 							}
 						}
 						results = results + '\n' + resultsArray[x];
