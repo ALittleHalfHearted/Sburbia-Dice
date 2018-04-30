@@ -95,16 +95,22 @@ client.on('message', message => {
 					}
 					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
 						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
-						mod = Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/')));
+						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/'))));
 					}
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
+						mod = 0;
 					}
 					results = results + ((results != '') ? '\n':'') + '**`' + args[i] + ' =`**';
 					for(var x = 0;x < num;x++){
-						resultsArray[x] = Dice(0,1,val,parseInt(mod),1);
-						if(resultsArray[x] - mod == 1){
-							resultsArray[x] = "Default";
+						resultsArray[x] = Dice(0,1,val,mod,1);
+						if(mod != 0){
+							if(resultsArray[x] - mod == 1){
+								resultsArray[x] = "Default";
+							}
+							else{
+								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + mod.toString() + ') = ' + resultsArray[x];
+							}
 						}
 						results = results + '\n' + resultsArray[x];
 					}
