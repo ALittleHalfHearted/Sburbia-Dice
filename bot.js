@@ -60,7 +60,8 @@ client.on('message', message => {
 		var resultsArray = [0,0,0,0,0,0,0,0,0,0];
 		var valid = true;
 		var val = 0;
-		var mod = 0		
+		var mod = 0;
+		var operation = '';
 		
 		switch(cmd){
 			case 'ping':
@@ -96,6 +97,18 @@ client.on('message', message => {
 					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
 						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
 						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/'))));
+						if(args[i].indexOf('+') != -1){
+							operation = '+';
+						}
+						else if(args[i].indexOf('-') != -1){
+							operation = '-';
+						}
+						else if(args[i].indexOf('/') != -1){
+							operation = '';
+						}
+						else if(args[i].indexOf('*') != -1){
+							operation = '*';
+						}
 					}
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
@@ -109,7 +122,7 @@ client.on('message', message => {
 								resultsArray[x] = "Default";
 							}
 							else{
-								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + ' + ' + mod.toString() + ') = ' + resultsArray[x];
+								resultsArray[x] = '(' + parseInt(resultsArray[x] - mod) + ' ' + operation + ' ' + mod.toString() + ') = ' + resultsArray[x];
 							}
 						}
 						results = results + '\n' + resultsArray[x];
