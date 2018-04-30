@@ -90,6 +90,9 @@ client.on('message', message => {
 						num = args[i].substring(0,args[i].indexOf('d'));
 						console.log(num);
 					}
+					else{
+						num = 0;
+					}
 					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
 						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
 						mod = Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/')));
@@ -99,11 +102,11 @@ client.on('message', message => {
 					}
 					results = results + ((results != '') ? '\n':'') + '**`' + args[i] + ' =`**';
 					for(var x = 0;x < num;x++){
-						var pHold = Dice(resultsArray[i],1,val,mod,1);
-						if(pHold - mod == 1){
-							pHold = "Default";
+						resultsArray[x] = Dice(0,1,val,mod,1);
+						if(resultsArray[x] - mod == 1){
+							resultsArray[x] = "Default";
 						}
-						results = results + '\n' + pHold;
+						results = results + '\n' + resultsArray[x];
 					}
 				}
 				message.reply('Your dice resulted in: ' + results);
