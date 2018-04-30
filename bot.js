@@ -11,7 +11,7 @@ const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMi
 const LETUNI = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
-	.setDescription("use `+drops [command]` to get info on a specific command")
+	.setDescription("use `+help [command]` to get info on a specific command")
 	.setColor(11876058) //#B536DA
 	.setThumbnail("https://images.fineartamerica.com/images-medium-large/god-does-not-play-dice-with-the-universe-einstein-arley-blankenship.jpg")
 	.addField("Enemy Drops", "`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~", true)
@@ -21,7 +21,7 @@ const EMBED = new Discord.RichEmbed()
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Online at\n-----' + D.toString().replace('UTC','CDT').replace('+0000','-0500') + '\n-----' + UTC);
-	client.user.setActivity('%drops for help');
+	client.user.setActivity('+help for commands');
 });
 
 client.on('message', message => {
@@ -69,7 +69,7 @@ client.on('message', message => {
 			case 'pong':
 				message.reply('Ping!');
 			break;
-			case 'commands':
+			case 'help':
 				switch(args){
 					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
 						message.channel.send('**```Use this command to get drops from any number of a single type of enemy at a specific tier. (Note: Plural or singular doesn\'t matter, but spelling does!)```**\n\n**Format:** `+[enemy name] [# killed] t[tier]`\n\n**examples:**\n`+ogre T5 45` gets drops from 45 tier 5' +
@@ -79,7 +79,7 @@ client.on('message', message => {
 						message.channel.send('**```A standard dice rolling command with mods. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
 					default:
-						message.channel.send('Use +commands [command] to get info on that specific command\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
 				}
 			break;
 			case 'r':
