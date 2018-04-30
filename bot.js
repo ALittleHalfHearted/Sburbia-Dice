@@ -91,7 +91,7 @@ client.on('message', message => {
 						num = args[i].substring(0,args[i].indexOf('d'));
 					}
 					else{
-						num = 0;
+						num = 1;
 					}
 					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
 						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
