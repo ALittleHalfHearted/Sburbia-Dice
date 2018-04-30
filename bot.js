@@ -93,9 +93,21 @@ client.on('message', message => {
 					else{
 						num = 0;
 					}
-					if(args[i].indexOf('+') != -1){
-						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+'));
-						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+'))));
+					if(args[i].indexOf('+' || '-' || '*' || '/') != -1){
+						val = args[i].substring(args[i].indexOf('d') + 1,args[i].indexOf('+' || '-' || '*' || '/'));
+						mod = parseInt(Modding(args[i].substring(args[i].indexOf('+' || '-' || '*' || '/'))));
+						if(args[i].indexOf('+') != -1){
+							operation = '+';
+						}
+						else if(args[i].indexOf('-') != -1){
+							operation = '-';
+						}
+						else if(args[i].indexOf('/') != -1){
+							operation = '';
+						}
+						else if(args[i].indexOf('*') != -1){
+							operation = '*';
+						}
 					}
 					else{
 						val = args[i].substring(args[i].indexOf('d') + 1);
