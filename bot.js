@@ -82,8 +82,13 @@ client.on('message', message => {
 					case 'r':
 						message.channel.send('**```A standard dice rolling command with addition capabilities. However, instead of adding up all your results, this lets you know exactly which rolls defaulted and separates each roll. (May add an option to get the sum of non-default rolls in the future)```**\n\n**Format:** `+r [x]d[y](mod) [a]d[b](mod) (etc)`');
 					break;
+					case 'ping': case 'pong':
+						message.channel.send('**```Ping! Pong! Ping! Pong! Check if the bot\'s online! Ping! Pong! Ping! Pong!```**');
+					break;
+					case 'stupid': case 'pointless':
+						message.channel.send('**```Generates a random number of random unicode characters!```**');
 					default:
-						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`');
+						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong\n`+stupid`\t`+pointless``');
 				}
 			break;
 			case 'r':
@@ -330,6 +335,27 @@ client.on('message', message => {
 			break;
 			case 'lich': case 'giclops': case 'titachnid': case 'archeron': case 'liches': case 'giclopes': case 'titachnids': case 'archerons':
 				message.channel.send('Unfortunately the enemy type you have requested is still being defined by @God. Please check back later!');
+			break;
+			case 'stupid': case 'pointless':
+				var mlem = ['',''];
+				var blep = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0;i < blep;i++){
+					let meh = '';
+					var nah = Math.floor(Math.random() * 2) + 4;
+					for(var x = 0;x < nah;x++){
+						var letnum = Math.floor(Math.random() * 2);
+						if(letnum == 1){
+							let letter = Math.floor(Math.random() * 5);
+							meh = meh + UNILET[letter];
+						}
+						else{
+							meh = meh.toString() + Math.floor(Math.random() * 10);
+						}
+					}
+					console.log('\\u' + meh);
+					mlem[i] = String.fromCharCode(meh);
+				}
+				message.channel.send(mlem.toString().replace(/,/g,''));
 			break;
 		}
 	}
