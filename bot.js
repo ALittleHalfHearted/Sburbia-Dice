@@ -70,6 +70,9 @@ client.on('message', message => {
 			case 'pong':
 				message.reply('Ping!');
 			break;
+			case 'embed':
+				message.channel.send(EMBED);
+			break;
 			case 'help':
 				switch(args){
 					case 'imp': case 'ogre': case 'basilisk': case 'lich': case 'giclops': case 'titachnid': case 'archeron':
