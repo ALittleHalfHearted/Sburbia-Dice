@@ -383,7 +383,8 @@ client.on('message', message => {
 	
 	client.on('error', error => {
 		console.log(error);
-		break;
+		message.channel.send('ERROR ENCOUNTERED. SHUTTING DOWN.');
+		client.destroy();
 	});
 });
 
