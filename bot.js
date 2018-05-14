@@ -87,6 +87,7 @@ client.on('message', message => {
 					break;
 					case 'stupid': case 'pointless':
 						message.channel.send('**```Generates a random number of random unicode characters!```**');
+					break;
 					default:
 						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`');
 				}
@@ -153,7 +154,6 @@ client.on('message', message => {
 							meh = meh.toString() + Math.floor(Math.random() * 10);
 						}
 					}
-					console.log('\\u' + meh);
 					mlem[i] = String.fromCharCode(meh);
 				}
 				message.channel.send(mlem.toString().replace(/,/g,''));
