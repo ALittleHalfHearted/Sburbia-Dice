@@ -88,7 +88,7 @@ client.on('message', message => {
 					case 'stupid': case 'pointless':
 						message.channel.send('**```Generates a random number of random unicode characters!```**');
 					default:
-						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong\n`+stupid`\t`+pointless``');
+						message.channel.send('Use +help [command] to get info on that specific command\n`(You can also use +embed to get this list as an embed!)`\n\n```Enemy Drops:```\n`+imp`\n`+ogre`\n`+basilisk`\n~~`+lich`\n`+giclops`\n`+titachnid`\n`+archeron`\n`+multi`~~\n\n```Other Commands:```\n`+r`\n`+ping`\t`+pong`\n`+stupid`\t`+pointless`');
 				}
 			break;
 			case 'r':
