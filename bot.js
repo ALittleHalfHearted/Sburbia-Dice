@@ -137,6 +137,27 @@ client.on('message', message => {
 				}
 				message.reply('Your dice resulted in: ' + results);
 			break;
+			case 'stupid': case 'pointless':
+				var mlem = ['',''];
+				var blep = Math.floor(Math.random() * 100) + 1;
+				for(var i = 0;i < blep;i++){
+					let meh = '';
+					var nah = Math.floor(Math.random() * 2) + 4;
+					for(var x = 0;x < nah;x++){
+						var letnum = Math.floor(Math.random() * 2);
+						if(letnum == 1){
+							let letter = Math.floor(Math.random() * 5);
+							meh = meh + UNILET[letter];
+						}
+						else{
+							meh = meh.toString() + Math.floor(Math.random() * 10);
+						}
+					}
+					console.log('\\u' + meh);
+					mlem[i] = String.fromCharCode(meh);
+				}
+				message.channel.send(mlem.toString().replace(/,/g,''));
+			break;
 			case 'imp': case 'imps':
 				//+imp [#] t[#]
 				if(args.indexOf('t') != -1){
