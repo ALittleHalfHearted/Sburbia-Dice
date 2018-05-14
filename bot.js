@@ -8,7 +8,7 @@ var date = (UTC.getHours() - 5 > -1) ? UTC.getDate():((UTC.getDate() - 1 > 0) ? 
 var year = (month == 11 && date == 31 && UTC.getHours() < h) ? (UTC.getFullYear() - 1):UTC.getFullYear();
 const D = new Date(year,month,date,h,UTC.getMinutes(),UTC.getSeconds(),UTC.getMilliseconds());
 
-const LETUNI = ['A','B','C','D','E','F'];
+const UNILET = ['A','B','C','D','E','F'];
 const EMBED = new Discord.RichEmbed()
 	.setTitle("__Commands List__")
 	.setDescription("use `+help [command]` to get info on a specific command")
