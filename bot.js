@@ -380,12 +380,6 @@ client.on('message', message => {
 			break;
 		}
 	}
-	
-	client.on('error', error => {
-		console.log(error);
-		message.channel.send('ERROR ENCOUNTERED. SHUTTING DOWN.');
-		client.destroy();
-	});
 });
 
 function Dice(check,num,val,mod,rpt){
