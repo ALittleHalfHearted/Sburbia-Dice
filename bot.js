@@ -380,6 +380,11 @@ client.on('message', message => {
 			break;
 		}
 	}
+	
+	client.on('error', error => {
+		console.log(error);
+		break;
+	});
 });
 
 function Dice(check,num,val,mod,rpt){
